@@ -1,0 +1,238 @@
+EXPERIMENT-3
+
+
+
+1)
+Insertvalues in EMPLOYEE table?
+
+mysql> INSERT INTO EMPLOYEE VALUES(1,'MANU','CALICUT','1991/03/03',314134232);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES(2,'MALCOM','GOA','1989/03/03',354134232);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES(3,'SURESH','KOCHI','1989/07/25',453441332);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES(4,'BAT MAN','USA','1989/02/15',45000000);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES(4,'BAT MAN','USA','1996/06/06',45111000);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT *FROM EMPLOYEE;
++------+---------+---------+------------+-----------+
+| SSN  | NAME    | CITY    | DOB        | ADHAR_NO  |
++------+---------+---------+------------+-----------+
+|    1 | MANU    | CALICUT | 1991-03-03 | 314134232 |
+|    2 | MALCOM  | GOA     | 1989-03-03 | 354134232 |
+|    3 | SURESH  | KOCHI   | 1989-07-25 | 453441332 |
+|    4 | BAT MAN | USA     | 1989-02-15 |  45000000 |
+|    4 | BAT MAN | USA     | 1996-06-06 |  45111000 |
++------+---------+---------+------------+-----------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+
+2)
+
+Insert values in STUDENT table?
+
+mysql> INSERT INTO STUDENT VALUES(1,'X',13,'GREEN VILLA(H)','M');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO STUDENT VALUES(2,'Y',13,'MERIDIAN  VILLA(H)','F');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO STUDENT VALUES(3,'Z',13,'MOUNT  VILLA(H)','M');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO STUDENT VALUES(4,'A',13,'PALACE  VILLA(H)','F');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO STUDENT VALUES(5,'B',18,'SEA  VILLA(H)','F');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT *FROM STUDENT;
++---------+------+------+--------------------+--------+
+| ROLL_NO | NAME | AGE  | ADDRESS            | GENDER |
++---------+------+------+--------------------+--------+
+|       1 | X    |   13 | GREEN VILLA(H)     | M      |
+|       2 | Y    |   15 | MERIDIAN  VILLA(H) | F      |
+|       3 | Z    |   16 | MOUNT  VILLA(H)    | M      |
+|       4 | A    |   12 | PALACE  VILLA(H)   | F      |
+|       5 | B    |   18 | SEA  VILLA(H)      | F      |
++---------+------+------+--------------------+--------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+
+3)
+
+Insert values in INVOICE database?
+
+INSERTING VALUES IN CUSTOMER TABLE->
+
+mysql> INSERT INTO CUSTOMER VALUES(101,'ANDREW','GREEN VILLA(H)','CALICUT',4244343);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES(102,'ARNOLD','MOUNT VILLA(H)','EKM',42342443);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES(103,'RUTHERFORD','SEA VILLA(H)','TVM',42232443);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES(104,'FINCH','DREAM VILLA(H)','GOA',42232567);
+Query OK, 1 row affected (0.04 sec)
+
+
+mysql> INSERT INTO CUSTOMER VALUES(105,'BERVIS','DEMOCRATIC VILLA(H)','ASSAM',42232989);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO CUSTOMER(ID,NAME,ADDRESS,CITY)VALUES(106,'FEODOR','NIGHT VILLA(H)','CALICUT');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT *FROM CUSTOMER;
++-----+------------+---------------------+---------+----------+
+| ID  | NAME       | ADDRESS             | CITY    | PH_NO    |
++-----+------------+---------------------+---------+----------+
+| 101 | ANDREW     | GREEN VILLA(H)      | CALICUT |  4244343 |
+| 102 | ARNOLD     | MOUNT VILLA(H)      | EKM     | 42342443 |
+| 103 | RUTHERFORD | SEA VILLA(H)        | TVM     | 42232443 |
+| 104 | FINCH      | DREAM VILLA(H)      | GOA     | 42232567 |
+| 105 | BERVIS     | DEMOCRATIC VILLA(H) | ASSAM   | 42232989 |
+| 106 | FEODOR     | NIGHT VILLA(H)      | CALICUT |     NULL |
++-----+------------+---------------------+---------+----------+
+6 rows in set (0.00 sec)
+
+
+
+
+INSERTING VALUES INTO PRODUCT TABLE->
+
+mysql> INSERT INTO PRODUCT VALUES(10,'TELEVISION',25000);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(15,'PHONE',17999);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(18,'BOOK',40);
+Query OK, 1 row affected (0.04 sec)
+
+
+mysql> INSERT INTO PRODUCT VALUES(25,'AC',23999);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(21,'BAG',999);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT *FROM PRODUCT;
++-----+-------+-------+
+| PID | PNAME | PRICE |
++-----+-------+-------+
+|  10 | PEN   |    20 |
+|  15 | PHONE | 17999 |
+|  18 | BOOK  |    40 |
+|  21 | BAG   |   999 |
+|  25 | AC    | 23999 |
++-----+-------+-------+
+5 rows in set (0.00 sec)
+
+
+
+INSERTING VALUES INTO INVOICE MASTER TABLE->
+mysql> INSERT INTO INVOICE_MASTER VALUES(1,101,'2021/04/24');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(2,102,'2021/09/12');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(3,103,'2022/03/14');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(4,104,'2022/04/16');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(5,105,'2022/05/18');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(6,102,'2022/05/18');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(7,106,'2022/06/20');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> SELECT * FROM INVOICE_MASTER;
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|      1 |     101 | 2021-04-24 |
+|      2 |     102 | 2021-09-12 |
+|      3 |     103 | 2022-03-14 |
+|      4 |     104 | 2022-04-16 |
+|      5 |     105 | 2022-05-18 |
+|      6 |     102 | 2022-05-18 |
+|      7 |     106 | 2022-06-20 |
++--------+---------+------------+
+7 rows in set (0.00 sec)
+
+
+
+INSERTING VALUES INTO INVOICE ITEM TABLE->
+mysql> INSERT INTO INVOICE_ITEM VALUES(1,10,50);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(2,21,20);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(3,25,10);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(3,15,10);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(4,21,8);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(5,18,105);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(6,10,75);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(6,18,60);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(7,15,43);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(7,25,21);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> SELECT * FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | PID  | QUANTITY |
++--------+------+----------+
+|      1 |   10 |       50 |
+|      2 |   21 |       20 |
+|      3 |   25 |       10 |
+|      3 |   15 |       10 |
+|      4 |   21 |        8 |
+|      5 |   18 |      105 |
+|      6 |   10 |       75 |
+|      6 |   18 |       60 |
+|      7 |   15 |       43 |
+|      7 |   25 |       21 |
++--------+------+----------+
+10 rows in set (0.00 sec)
+
+
+
+
+
