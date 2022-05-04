@@ -1,0 +1,424 @@
+
+Experiment No:6
+SELECT QUERY 1
+
+
+
+1)      
+List all customer details.
+
+mysql> SELECT * FROM CUSTOMER;
++-----+------------+----------------+-----------+----------+
+| ID  | NAME       | ADDRESS        | CITY      | PH_NO    |
++-----+------------+----------------+-----------+----------+
+| 101 | ANDREW     | GREEN VILLA(H) | KOZHIKODE |  4244343 |
+| 102 | ARNOLD     | MOUNT VILLA(H) | EKM       | 42342443 |
+| 103 | RUTHERFORD | RIVER VILLA(H) | USA       | 15235422 |
+| 104 | FINCH      | DREAM VILLA(H) | GOA       | 42232567 |
++-----+------------+----------------+-----------+----------+
+4 rows in set (0.00 sec)
+
+
+
+2)     
+List
+pname, price of all products.
+
+mysql> SELECT * FROM PRODUCT;
++-----+-------+-------+
+| PID | PNAME | PRICE |
++-----+-------+-------+
+|  10 | PEN   |    56 |
+|  15 | PHONE | 18359 |
+|  18 | BOOK  |   102 |
+|  21 | BAG   |  2039 |
+|  25 | AC    | 24479 |
++-----+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT PNAME, PRICE FROM PRODUCT;
++-------+-------+
+| PNAME | PRICE |
++-------+-------+
+| PEN   |    56 |
+| PHONE | 18359 |
+| BOOK  |   102 |
+| BAG   |  2039 |
+| AC    | 24479 |
++-------+-------+
+5 rows in set (0.00 sec)
+
+
+
+3)
+mysql> select * FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | PID  | QUANTITY |
++--------+------+----------+
+|      4 |   21 |       16 |
+|      7 |   15 |       43 |
+|      7 |   25 |       21 |
++--------+------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select distinct INV_ID FROM INVOICE_ITEM;
+
++--------+
+| INV_ID |
++--------+
+|      4 |
+|      7 |
++--------+
+2 rows in set (0.02 sec)
+
+
+
+4)    
+List
+product price between 50rs and 150rs
+
+mysql> SELECT * FROM PRODUCT;
++-----+-------+-------+
+| PID | PNAME | PRICE |
++-----+-------+-------+
+|  10 | PEN   |    56 |
+|  15 | PHONE | 18359 |
+|  18 | BOOK  |   102 |
+|  21 | BAG   |  2039 |
+|  25 | AC    | 24479 |
++-----+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM PRODUCT WHERE PRICE BETWEEN 50 AND 150;
++-----+-------+-------+
+| PID | PNAME | PRICE |
++-----+-------+-------+
+|  10 | PEN   |    56 |
+|  18 | BOOK  |   102 |
++-----+-------+-------+
+2 rows in set (0.00 sec)
+
+
+13.   
+Find
+the customer names who have at least 3 characters.
+
+
+
+5)
+List the customer details who lives in ‘ekm’,’tvm’.
+
+mysql> SELECT * FROM CUSTOMER;
++-----+---------+----------------+-----------+-----------+
+| ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
++-----+---------+----------------+-----------+-----------+
+| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
+| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
+| 103 | ARUN    | RIVER VILLA(H) | USA       |  15235422 |
+| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
+| 108 | MANU    | SILVER VILLA   | TVM       | 333544353 |
+| 109 | MARKRAM | SEA VILLA      | TVM       | 567544353 |
++-----+---------+----------------+-----------+-----------+
+6 rows in set (0.00 sec)
+
+
+mysql> SELECT * FROM CUSTOMER WHERE CITY IN('EKM','TVM');
++-----+---------+----------------+------+-----------+
+| ID  | NAME    | ADDRESS        | CITY | PH_NO     |
++-----+---------+----------------+------+-----------+
+| 102 | ARNOLD  | MOUNT VILLA(H) | EKM  |  42342443 |
+| 108 | MANU    | SILVER VILLA   | TVM  | 333544353 |
+| 109 | MARKRAM | SEA VILLA      | TVM  | 567544353 |
++-----+---------+----------------+------+-----------+
+3 rows in set (0.00 sec)
+
+
+
+6)    
+List the invoice details from 1st January 2021 to 31st march 2022
+
+mysql> SELECT * FROM INVOICE_MASTER;
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|      1 |     101 | 2021-01-17 |
+|      4 |     104 | 2021-02-08 |
+|      5 |     104 | 2022-03-28 |
+|      7 |     101 | 2022-06-20 |
++--------+---------+------------+
+4 rows in set (0.00 sec)
+
+
+
+mysql> SELECT * FROM INVOICE_MASTER WHERE INV_DATE BETWEEN '2021/01/01' AND '2022/03/31';
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|      1 |     101 | 2021-01-17 |
+|      4 |     104 | 2021-02-08 |
+|      5 |     104 | 2022-03-28 |
++--------+---------+------------+
+3 rows in set (0.00 sec)
+
+
+
+7)      
+List the customer details who not live in ‘tvm’.
+
+mysql> SELECT * FROM CUSTOMER;
++-----+---------+----------------+-----------+-----------+
+| ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
++-----+---------+----------------+-----------+-----------+
+| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
+| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
+| 103 | ARUN    | RIVER VILLA(H) | USA       |  15235422 |
+| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
+| 108 | MANU    | SILVER VILLA   | TVM       | 333544353 |
+| 109 | MARKRAM | SEA VILLA      | TVM       | 567544353 |
++-----+---------+----------------+-----------+-----------+
+6 rows in set (0.00 sec)
+
+
+mysql> SELECT * FROM CUSTOMER WHERE CITY !='TVM';
++-----+--------+----------------+-----------+----------+
+| ID  | NAME   | ADDRESS        | CITY      | PH_NO    |
++-----+--------+----------------+-----------+----------+
+| 101 | ANDREW | GREEN VILLA(H) | KOZHIKODE |  4244343 |
+| 102 | ARNOLD | MOUNT VILLA(H) | EKM       | 42342443 |
+| 103 | ARUN   | RIVER VILLA(H) | USA       | 15235422 |
+| 104 | FINCH  | DREAM VILLA(H) | GOA       | 42232567 |
++-----+--------+----------------+-----------+----------+
+4 rows in set (0.00 sec)
+
+
+
+8)      
+List the customers who have no phone number.
+
+mysql> SELECT * FROM CUSTOMER;
++-----+---------+----------------+-----------+-----------+
+| ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
++-----+---------+----------------+-----------+-----------+
+| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
+| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
+| 103 | ARUN    | RIVER VILLA(H) | USA       |  15235422 |
+| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
+| 107 | ANN     | FOREST VILLA   | CANADA    |      NULL |
+| 108 | MANU    | SILVER VILLA   | TVM       | 333544353 |
+| 109 | MARKRAM | SEA VILLA      | TVM       | 567544353 |
++-----+---------+----------------+-----------+-----------+
+7 rows in set (0.00 sec)
+
+
+mysql> SELECT * FROM CUSTOMER WHERE PH_NO IS NULL;
++-----+------+--------------+--------+-------+
+| ID  | NAME | ADDRESS      | CITY   | PH_NO |
++-----+------+--------------+--------+-------+
+| 107 | ANN  | FOREST VILLA | CANADA |  NULL |
++-----+------+--------------+--------+-------+
+1 row in set (0.00 sec)
+
+
+
+9)     
+Display customer names in descending order.
+
+mysql> SELECT * FROM CUSTOMER;
++-----+---------+----------------+-----------+-----------+
+| ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
++-----+---------+----------------+-----------+-----------+
+| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
+| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
+| 103 | ARUN    | RIVER VILLA(H) | USA       |  15235422 |
+| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
+| 107 | ANN     | FOREST VILLA   | CANADA    |      NULL |
+| 108 | MANU    | SILVER VILLA   | TVM       | 333544353 |
+| 109 | MARKRAM | SEA VILLA      | TVM       | 567544353 |
++-----+---------+----------------+-----------+-----------+
+7 rows in set (0.00 sec)
+
+
+mysql> SELECT NAME FROM CUSTOMER ORDER BY NAME ASC;
++---------+
+| NAME    |
++---------+
+| ANDREW  |
+| ANN     |
+| ARNOLD  |
+| ARUN    |
+| FINCH   |
+| MANU    |
+| MARKRAM |
++---------+
+7 rows in set (0.00 sec)
+
+
+
+10)
+Display the customer details sorted in ascending by city and descending by names.
+
+mysql> SELECT * FROM CUSTOMER;
++-----+---------+----------------+-----------+-----------+
+| ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
++-----+---------+----------------+-----------+-----------+
+| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
+| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
+| 103 | ARUN    | RIVER VILLA(H) | USA       |  15235422 |
+| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
+| 107 | ANN     | FOREST VILLA   | CANADA    |      NULL |
+| 108 | MANU    | SILVER VILLA   | TVM       | 333544353 |
+| 109 | MARKRAM | SEA VILLA      | TVM       | 567544353 |
++-----+---------+----------------+-----------+-----------+
+7 rows in set (0.00 sec)
+
+
+mysql> SELECT * FROM CUSTOMER ORDER BY CITY ASC;
++-----+---------+----------------+-----------+-----------+
+| ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
++-----+---------+----------------+-----------+-----------+
+| 107 | ANN     | FOREST VILLA   | CANADA    |      NULL |
+| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
+| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
+| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
+| 108 | MANU    | SILVER VILLA   | TVM       | 333544353 |
+| 109 | MARKRAM | SEA VILLA      | TVM       | 567544353 |
+| 103 | ARUN    | RIVER VILLA(H) | USA       |  15235422 |
++-----+---------+----------------+-----------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMER ORDER BY NAME DESC;
++-----+---------+----------------+-----------+-----------+
+| ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
++-----+---------+----------------+-----------+-----------+
+| 109 | MARKRAM | SEA VILLA      | TVM       | 567544353 |
+| 108 | MANU    | SILVER VILLA   | TVM       | 333544353 |
+| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
+| 103 | ARUN    | RIVER VILLA(H) | USA       |  15235422 |
+| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
+| 107 | ANN     | FOREST VILLA   | CANADA    |      NULL |
+| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
++-----+---------+----------------+-----------+-----------+
+7 rows in set (0.00 sec)
+
+
+
+11) 
+Find the customer names start with ‘A’.
+
+mysql> SELECT * FROM CUSTOMER;
++-----+---------+----------------+-----------+-----------+
+| ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
++-----+---------+----------------+-----------+-----------+
+| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
+| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
+| 103 | ARUN    | RIVER VILLA(H) | USA       |  15235422 |
+| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
+| 107 | ANN     | FOREST VILLA   | CANADA    |      NULL |
+| 108 | MANU    | SILVER VILLA   | TVM       | 333544353 |
+| 109 | MARKRAM | SEA VILLA      | TVM       | 567544353 |
++-----+---------+----------------+-----------+-----------+
+7 rows in set (0.00 sec)
+
+
+mysql> SELECT NAME FROM CUSTOMER WHERE NAME LIKE 'A%';
++--------+
+| NAME   |
++--------+
+| ANDREW |
+| ARNOLD |
+| ARUN   |
+| ANN    |
++--------+
+4 rows in set (0.00 sec)
+
+
+
+12)  
+Find the customer names who have ‘e’ or ‘a’ in them.
+
+mysql> SELECT NAME FROM CUSTOMER WHERE NAME LIKE '%A%' OR NAME LIKE '%E%';
++---------+
+| NAME    |
++---------+
+| ANDREW  |
+| ARNOLD  |
+| ARUN    |
+| ANN     |
+| SEN     |
+| MARKRAM |
++---------+
+6 rows in set (0.00 sec)
+
+
+
+13)
+Find the customer names who have at least 3 characters.
+
+mysql> SELECT * FROM CUSTOMER;
++-----+---------+----------------+-----------+-----------+
+| ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
++-----+---------+----------------+-----------+-----------+
+| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
+| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
+| 103 | ARUN    | RIVER VILLA(H) | USA       |  15235422 |
+| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
+| 107 | ANN     | FOREST VILLA   | CANADA    |      NULL |
+| 108 | MANU    | SILVER VILLA   | TVM       | 333544353 |
+| 109 | MARKRAM | SEA VILLA      | TVM       | 567544353 |
++-----+---------+----------------+-----------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT NAME FROM CUSTOMER WHERE NAME LIKE '___';
++------+
+| NAME |
++------+
+| ANN  |
+| SEN  |
++------+
+2 rows in set (0.00 sec)
+
+
+
+14)  
+List the names of customers their names have ‘r’ in second position.
+
+mysql> SELECT * FROM CUSTOMER;
++-----+---------+----------------+-----------+-----------+
+| ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
++-----+---------+----------------+-----------+-----------+
+| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
+| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
+| 103 | ARUN    | RIVER VILLA(H) | USA       |  15235422 |
+| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
+| 107 | ANN     | FOREST VILLA   | CANADA    |      NULL |
+| 108 | MANU    | SILVER VILLA   | TVM       | 333544353 |
+| 109 | MARKRAM | SEA VILLA      | TVM       | 567544353 |
++-----+---------+----------------+-----------+-----------+
+7 rows in set (0.00 sec)
+
+
+mysql> SELECT NAME FROM CUSTOMER WHERE NAME LIKE '_R%';
++--------+
+| NAME   |
++--------+
+| ARNOLD |
+| ARUN   |
++--------+
+2 rows in set (0.00 sec)
+
+
+
+15) 
+Find the customer names start with ‘a’ and are at least 3 characters in length.
+
+mysql> SELECT NAME FROM CUSTOMER WHERE NAME LIKE 'A__%';
++--------+
+| NAME   |
++--------+
+| ANDREW |
+| ARNOLD |
+| ARUN   |
+| ANN    |
++--------+
+4 rows in set (0.00 sec)
+
