@@ -1,0 +1,105 @@
+Exp4 : DML COMMAND- UPDATE
+
+1)Update the price of a particular product.?
+
+mysql> UPDATE PRODUCT SET PRICE=1999 WHERE PNAME=PEN;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM PRODUCT;
++-----+-------+-------+
+| PID | PNAME | PRICE |
++-----+-------+-------+
+|  10 | PEN   |    55 |
+|  15 | PHONE | 17999 |
+|  18 | BOOK  |   100 |
+|  21 | BAG   |  1999 |
+|  25 | AC    | 23999 |
++-----+-------+-------+
+5 rows in set (0.00 sec)
+
+
+2)Change the name of city ‘calicut’ to ‘kozhikode’ in the customer table.?
+
+mysql> UPDATE CUSTOMER SET CITY='KOZHIKODE' WHERE CITY='CALICUT';
+Query OK, 2 rows affected (0.02 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM CUSTOMER;
++-----+------------+---------------------+-----------+----------+
+| ID  | NAME       | ADDRESS             | CITY      | PH_NO    |
++-----+------------+---------------------+-----------+----------+
+| 101 | ANDREW     | GREEN VILLA(H)      | KOZHIKODE |  4244343 |
+| 102 | ARNOLD     | MOUNT VILLA(H)      | EKM       | 42342443 |
+| 103 | RUTHERFORD | SEA VILLA(H)        | TVM       | 42232443 |
+| 104 | FINCH      | DREAM VILLA(H)      | GOA       | 42232567 |
+| 105 | BERVIS     | DEMOCRATIC VILLA(H) | ASSAM     | 42232989 |
+| 106 | FEODOR     | NIGHT VILLA(H)      | KOZHIKODE |     NULL |
++-----+------------+---------------------+-----------+----------+
+6 rows in set (0.00 sec)
+
+
+3)Update all prices with 2% of its original price.?
+
+mysql> UPDATE PRODUCT SET PRICE=PRICE*1.02;
+Query OK, 5 rows affected (0.03 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> SELECT * FROM PRODUCT;
++-----+-------+-------+
+| PID | PNAME | PRICE |
++-----+-------+-------+
+|  10 | PEN   |    56 |
+|  15 | PHONE | 18359 |
+|  18 | BOOK  |   102 |
+|  21 | BAG   |  2039 |
+|  25 | AC    | 24479 |
++-----+-------+-------+
+5 rows in set (0.00 sec)
+
+
+
+4)Change the address, city, phone number of a particular customer.?
+
+mysql> UPDATE CUSTOMER SET ADDRESS='RIVER VILLA(H)', CITY='USA', PH_NO=15235422 WHERE ID=103;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM CUSTOMER;
++-----+------------+---------------------+-----------+----------+
+| ID  | NAME       | ADDRESS             | CITY      | PH_NO    |
++-----+------------+---------------------+-----------+----------+
+| 101 | ANDREW     | GREEN VILLA(H)      | KOZHIKODE |  4244343 |
+| 102 | ARNOLD     | MOUNT VILLA(H)      | EKM       | 42342443 |
+| 103 | RUTHERFORD | RIVER VILLA(H)      | USA       | 15235422 |
+| 104 | FINCH      | DREAM VILLA(H)      | GOA       | 42232567 |
+| 105 | BERVIS     | DEMOCRATIC VILLA(H) | ASSAM     | 42232989 |
+| 106 | FEODOR     | NIGHT VILLA(H)      | KOZHIKODE |     NULL |
++-----+------------+---------------------+-----------+----------+
+6 rows in set (0.00 sec)
+
+
+5)Change the quantity of a purchased product of inv_id ‘101’?
+
+mysql> UPDATE INVOICE_ITEM SET QUANTITY=16 WHERE INV_ID=4 AND PID=21;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | PID  | QUANTITY |
++--------+------+----------+
+|      1 |   10 |       50 |
+|      2 |   21 |       20 |
+|      3 |   25 |       10 |
+|      3 |   15 |       10 |
+|      4 |   21 |       16 |
+|      5 |   18 |      105 |
+|      6 |   10 |       75 |
+|      6 |   18 |       60 |
+|      7 |   15 |       43 |
+|      7 |   25 |       21 |
++--------+------+----------+
+10 rows in set (0.00 sec)
+
+
