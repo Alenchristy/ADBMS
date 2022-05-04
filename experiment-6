@@ -99,11 +99,6 @@ mysql> SELECT * FROM PRODUCT WHERE PRICE BETWEEN 50 AND 150;
 2 rows in set (0.00 sec)
 
 
-13.   
-Find
-the customer names who have at least 3 characters.
-
-
 
 5)
 List the customer details who lives in ‘ekm’,’tvm’.
