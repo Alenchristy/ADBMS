@@ -1,0 +1,136 @@
+Experiment No: 7 
+
+SELECT query 2
+
+DML- SELECT QUERY 2 (GROUP BY, AGGREGATE FUNCTIONS)
+
+
+1) List product name, price except soap on price order.
+
+mysql> SELECT * FROM PRODUCT;
++-----+-------+-------+
+| PID | PNAME | PRICE |
++-----+-------+-------+
+|  10 | PEN   |    56 |
+|  13 | SOAP  |    35 |
+|  15 | PHONE | 18359 |
+|  18 | BOOK  |   102 |
+|  21 | BAG   |  2039 |
+|  25 | AC    | 24479 |
++-----+-------+-------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT PNAME,PRICE FROM PRODUCT WHERE PNAME !='SOAP' ORDER BY PRICE;
++-------+-------+
+| PNAME | PRICE |
++-------+-------+
+| PEN   |    56 |
+| BOOK  |   102 |
+| BAG   |  2039 |
+| PHONE | 18359 |
+| AC    | 24479 |
++-------+-------+
+5 rows in set (0.00 sec)
+
+
+
+2) Find minimum, maximum and average price of products.
+
+
+mysql> SELECT MIN(PRICE),AVG(PRICE),MAX(PRICE) FROM PRODUCT;
++------------+------------+------------+
+| MIN(PRICE) | AVG(PRICE) | MAX(PRICE) |
++------------+------------+------------+
+|         35 |  7511.6667 |      24479 |
++------------+------------+------------+
+1 row in set (0.00 sec)
+
+
+
+3) Find number of customers in each citY?
+
+mysql> SELECT * FROM CUSTOMER;
++-----+---------+----------------+-----------+-----------+
+| ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
++-----+---------+----------------+-----------+-----------+
+| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
+| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
+| 103 | ARUN    | RIVER VILLA(H) | USA       |  15235422 |
+| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
+| 107 | ANN     | FOREST VILLA   | CANADA    |      NULL |
+| 108 | SEN     | SILVER VILLA   | TVM       | 333544353 |
+| 109 | MARKRAM | SEA VILLA      | TVM       | 567544353 |
++-----+---------+----------------+-----------+-----------+
+7 rows in set (0.00 sec)
+
+
+mysql> SELECT CITY, COUNT(*) FROM CUSTOMER GROUP BY CITY;
++-----------+----------+
+| CITY      | COUNT(*) |
++-----------+----------+
+| CANADA    |        1 |
+| EKM       |        1 |
+| GOA       |        1 |
+| KOZHIKODE |        1 |
+| TVM       |        2 |
+| USA       |        1 |
++-----------+----------+
+6 rows in set (0.00 sec)
+
+
+4) Find number of customers in each city, only include city with more than 3 customers.
+
+mysql> SELECT * FROM CUSTOMER;
++-----+---------+----------------+-----------+-----------+
+| ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
++-----+---------+----------------+-----------+-----------+
+| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
+| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
+| 103 | ARUN    | RIVER VILLA(H) | TVM       |  15235422 |
+| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
+| 107 | ANN     | FOREST VILLA   | TVM       |      NULL |
+| 108 | SEN     | SILVER VILLA   | TVM       | 333544353 |
+| 109 | MARKRAM | SEA VILLA      | TVM       | 567544353 |
++-----+---------+----------------+-----------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT CITY, COUNT(ID) FROM CUSTOMER GROUP BY CITY HAVING COUNT(ID)>=3;
++------+-----------+
+| CITY | COUNT(ID) |
++------+-----------+
+| TVM  |         4 |
++------+-----------+
+1 row in set (0.00 sec)
+
+
+5) Show data as displayed ‘who, where’ Eg: ‘customer1 lives in ekm’.
+
+mysql> SELECT * FROM CUSTOMER;
++-----+---------+----------------+-----------+-----------+
+| ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
++-----+---------+----------------+-----------+-----------+
+| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
+| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
+| 103 | ARUN    | RIVER VILLA(H) | TVM       |  15235422 |
+| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
+| 107 | ANN     | FOREST VILLA   | TVM       |      NULL |
+| 108 | SEN     | SILVER VILLA   | TVM       | 333544353 |
+| 109 | MARKRAM | SEA VILLA      | TVM       | 567544353 |
++-----+---------+----------------+-----------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(NAME, " LIVES IN ", CITY,".") AS CUSTOMER_INFORMATION FROM CUSTOMER;
++---------------------------+
+| CUSTOMER_INFORMATION      |
++---------------------------+
+| ANDREW LIVES IN KOZHIKODE.|
+| ARNOLD LIVES IN EKM.      |
+| ARUN LIVES IN TVM.        |
+| FINCH LIVES IN GOA.       |
+| ANN LIVES IN TVM.         |
+| SEN LIVES IN TVM.         |
+| MARKRAM LIVES IN TVM.     |
++---------------------------+
+7 rows in set (0.00 sec)
+
+
