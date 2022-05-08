@@ -61,7 +61,7 @@ mysql> SELECT * FROM PRODUCT;
 
 4)Change the address, city, phone number of a particular customer.?
 
-mysql> UPDATE CUSTOMER SET ADDRESS='RIVER VILLA(H)', CITY='USA', PH_NO=15235422 WHERE ID=103;
+mysql> UPDATE CUSTOMER SET ADDRESS='RIVER VILLA(H)', CITY='USA', PH_NO=15235422 WHERE ID=103; //WRITE CUSTOMER NAME
 Query OK, 1 row affected (0.04 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 
@@ -102,4 +102,5 @@ mysql> SELECT * FROM INVOICE_ITEM;
 +--------+------+----------+
 10 rows in set (0.00 sec)
 
+//VERIFIED 
 
