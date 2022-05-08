@@ -267,7 +267,7 @@ mysql> SELECT * FROM CUSTOMER;
 7 rows in set (0.00 sec)
 
 
-mysql> SELECT * FROM CUSTOMER ORDER BY CITY ASC;
+mysql> SELECT * FROM CUSTOMER ORDER BY CITY ASC; //WRONG
 +-----+---------+----------------+-----------+-----------+
 | ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
 +-----+---------+----------------+-----------+-----------+
@@ -417,3 +417,5 @@ mysql> SELECT NAME FROM CUSTOMER WHERE NAME LIKE 'A__%';
 +--------+
 4 rows in set (0.00 sec)
 
+
+//CORRECTION
