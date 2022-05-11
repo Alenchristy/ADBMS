@@ -404,3 +404,4 @@ mysql> SELECT NAME FROM CUSTOMER WHERE NAME LIKE 'A__%';
 +--------+
 4 rows in set (0.00 sec)
 
+// VERIFIED
