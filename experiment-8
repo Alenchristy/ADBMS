@@ -1,0 +1,164 @@
+Experiment No:8 SUBQUERY
+
+
+
+1) List the customer names of invoice date 17 January 2021.
+
+mysql> SELECT * FROM CUSTOMER;
++-----+---------+----------------+-----------+-----------+
+| ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
++-----+---------+----------------+-----------+-----------+
+| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
+| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
+| 103 | ARUN    | RIVER VILLA(H) | TVM       |  15235422 |
+| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
+| 107 | ANN     | FOREST VILLA   | TVM       |      NULL |
+| 108 | SEN     | SILVER VILLA   | TVM       | 333544353 |
+| 109 | MARKRAM | SEA VILLA      | TVM       | 567544353 |
++-----+---------+----------------+-----------+-----------+
+7 rows in set (0.00 sec)
+
+
+mysql> SELECT NAME FROM CUSTOMER WHERE ID IN (SELECT CUST_ID FROM INVOICE_MASTER WHERE INV_DATE='2021/01/17');
++--------+
+| NAME   |
++--------+
+| ANDREW |
++--------+
+1 row in set (0.00 sec)
+
+
+
+2) List the product name and price of each invoice item.
+
+
+mysql> SELECT * FROM PRODUCT;
++-----+-------+-------+
+| PID | PNAME | PRICE |
++-----+-------+-------+
+|  10 | PEN   |    56 |
+|  13 | SOAP  |    35 |
+|  15 | PHONE | 18359 |
+|  18 | BOOK  |   102 |
+|  21 | BAG   |  2039 |
+|  25 | AC    | 24479 |
++-----+-------+-------+
+6 rows in set (0.00 sec)
+
+
+mysql> SELECT * FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | PID  | QUANTITY |
++--------+------+----------+
+|      4 |   21 |       16 |
+|      7 |   15 |       43 |
+|      7 |   25 |       21 |
++--------+------+----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT PNAME,PRICE FROM PRODUCT WHERE PID IN (SELECT PID FROM INVOICE_ITEM);
++-------+-------+
+| PNAME | PRICE |
++-------+-------+
+| PHONE | 18359 |
+| BAG   |  2039 |
+| AC    | 24479 |
++-------+-------+
+3 rows in set (0.00 sec)
+
+  
+
+
+3) List the product names, only include their purchased quantity more than 3.
+
+mysql> SELECT * FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | PID  | QUANTITY |
++--------+------+----------+
+|      4 |   21 |        2 |
+|      7 |   15 |       43 |
+|      7 |   25 |       21 |
++--------+------+----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT PNAME FROM PRODUCT WHERE PID IN (SELECT PID FROM INVOICE_ITEM WHERE QUANTITY>3);
++-------+
+| PNAME |
++-------+
+| PHONE |
+| AC    |
++-------+
+2 rows in set (0.00 sec)
+
+
+
+
+
+4) Find the product that has no sale.
+
+mysql> SELECT * FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | PID  | QUANTITY |
++--------+------+----------+
+|      4 |   21 |        2 |
+|      7 |   15 |       43 |
+|      7 |   25 |       21 |
++--------+------+----------+
+3 rows in set (0.00 sec)
+
+
+mysql> SELECT PNAME FROM PRODUCT WHERE PID NOT IN (SELECT PID FROM INVOICE_ITEM);
++-------+
+| PNAME |
++-------+
+| PEN   |
+| SOAP  |
+| BOOK  |
++-------+
+3 rows in set (0.00 sec)
+
+
+
+
+5) List the customer names who purchased the items ‘PHONE’ and ‘AC’.
+
+mysql> SELECT NAME FROM CUSTOMER WHERE ID IN(SELECT CUST_ID FROM INVOICE_MASTER WHERE INV_ID IN(SELECT INV_ID FROM INVOICE_ITEM WHERE PID IN(SELECT PID FROM PRODUCT WHERE PNAME='PHONE' OR (SELECT PID FROM PRODUCT WHERE PNAME='AC'))));
++--------+
+| NAME   |
++--------+
+| ANDREW |
+| FINCH  |
++--------+
+2 rows in set (0.00 sec)
+
+
+
+
+6) Display the purchased product details of the customer ’xyz’.
+
+
+mysql> SELECT * FROM PRODUCT WHERE PID IN(SELECT PID FROM INVOICE_ITEM WHERE INV_ID IN(SELECT INV_ID FROM INVOICE_MASTER WHERE CUST_ID IN(SELECT ID FROM CUSTOMER WHERE NAME='ANDREW')));
++-----+-------+-------+
+| PID | PNAME | PRICE |
++-----+-------+-------+
+|  15 | PHONE | 18359 |
+|  25 | AC    | 24479 |
++-----+-------+-------+
+2 rows in set (0.00 sec)
+
+
+
+
+7) List the names of all customers who have purchased at least 2 products, make sure that no duplicate names in the result.
+
+
+mysql> SELECT NAME FROM CUSTOMER WHERE ID IN(SELECT CUST_ID FROM INVOICE_MASTER WHERE INV_ID IN (SELECT INV_ID FROM INVOICE_ITEM GROUP BY INV_ID HAVING COUNT(INV_ID)>=2));
++--------+
+| NAME   |
++--------+
+| ANDREW |
+| FINCH  |
++--------+
+2 rows in set (0.00 sec)
+
+
