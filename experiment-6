@@ -249,8 +249,7 @@ mysql> SELECT NAME FROM CUSTOMER ORDER BY NAME ASC;
 
 
 
-10)
-Display the customer details sorted in ascending by city and descending by names.
+10) Display the customer details sorted in ascending by city and descending by names.
 
 mysql> SELECT * FROM CUSTOMER;
 +-----+---------+----------------+-----------+-----------+
@@ -267,33 +266,21 @@ mysql> SELECT * FROM CUSTOMER;
 7 rows in set (0.00 sec)
 
 
-mysql> SELECT * FROM CUSTOMER ORDER BY CITY ASC; //WRONG
+mysql> SELECT * FROM CUSTOMER ORDER BY NAME DESC, CITY ASC;
 +-----+---------+----------------+-----------+-----------+
 | ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
 +-----+---------+----------------+-----------+-----------+
-| 107 | ANN     | FOREST VILLA   | CANADA    |      NULL |
-| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
-| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
-| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
-| 108 | MANU    | SILVER VILLA   | TVM       | 333544353 |
+| 108 | SEN     | SILVER VILLA   | TVM       | 333544353 |
 | 109 | MARKRAM | SEA VILLA      | TVM       | 567544353 |
-| 103 | ARUN    | RIVER VILLA(H) | USA       |  15235422 |
+| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
+| 103 | ARUN    | RIVER VILLA(H) | TVM       |  15235422 |
+| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
+| 107 | ANN     | FOREST VILLA   | TVM       |      NULL |
+| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
 +-----+---------+----------------+-----------+-----------+
 7 rows in set (0.00 sec)
 
-mysql> SELECT * FROM CUSTOMER ORDER BY NAME DESC;
-+-----+---------+----------------+-----------+-----------+
-| ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
-+-----+---------+----------------+-----------+-----------+
-| 109 | MARKRAM | SEA VILLA      | TVM       | 567544353 |
-| 108 | MANU    | SILVER VILLA   | TVM       | 333544353 |
-| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
-| 103 | ARUN    | RIVER VILLA(H) | USA       |  15235422 |
-| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
-| 107 | ANN     | FOREST VILLA   | CANADA    |      NULL |
-| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
-+-----+---------+----------------+-----------+-----------+
-7 rows in set (0.00 sec)
+
 
 
 
@@ -417,5 +404,3 @@ mysql> SELECT NAME FROM CUSTOMER WHERE NAME LIKE 'A__%';
 +--------+
 4 rows in set (0.00 sec)
 
-
-//CORRECTION
