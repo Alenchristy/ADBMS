@@ -1,0 +1,77 @@
+Experiment No: 10
+
+10-VIEWS
+
+
+
+1.      
+Create
+a view for customers who have purchased products.
+
+
+mysql> CREATE VIEW CUSTOMER_PURCHASE AS SELECT NAME FROM CUSTOMER INNER JOIN INVOICE_MASTER ON CUSTOMER.ID=INVOICE_MASTER.CUST_ID INNER JOIN INVOICE_ITEM ON INVOICE_ITEM.INV_ID=INVOICE_MASTER.INV_ID INNER JOIN PRODUCT ON INVOICE_ITEM.PID=PRODUCT.PID;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> SELECT * FROM CUSTOMER_PURCHASE;
++--------+
+| NAME   |
++--------+
+| FINCH  |
+| ANDREW |
+| FINCH  |
+| FINCH  |
+| FINCH  |
+| ANDREW |
+| ANDREW |
++--------+
+7 rows in set (0.00 sec)
+
+
+mysql> CREATE VIEW CUSTOMER_PURCHASE AS SELECT CUSTOMER.NAME,PRODUCT.PNAME FROM CUSTOMER INNER JOIN INVOICE_MASTER ON CUSTOMER.ID=INVOICE_MASTER.CUST_ID INNER JOIN INVOICE_ITEM ON INVOICE_ITEM.INV_ID=INVOICE_MASTER.INV_ID INNER JOIN PRODUCT ON INVOICE_ITEM.PID=PRODUCT.PID; 
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> SELECT * FROM CUSTOMER_PURCHASE3;
++--------+-------+
+| NAME   | PNAME |
++--------+-------+
+| FINCH  | BAG   |
+| ANDREW | PHONE |
+| FINCH  | PHONE |
+| FINCH  | AC    |
+| FINCH  | AC    |
+| ANDREW | BAG   |
+| ANDREW | AC    |
++--------+-------+
+7 rows in set (0.00 sec)
+
+
+
+
+
+2.      
+Create
+a view for invoice products[cname, , inv_id, product_id, quantity]
+
+
+mysql> CREATE VIEW INVOICE_PRODUCT AS SELECT CUSTOMER.NAME,INVOICE_ITEM.INV_ID,INVOICE_ITEM.PID,INVOICE_ITEM.QUANTITY FROM CUSTOMER LEFT JOIN INVOICE_MASTER ON CUSTOMER.ID=INVOICE_MASTER.CUST_ID LEFT JOIN INVOICE_ITEM ON INVOICE_ITEM.INV_ID=INVOICE_MASTER.INV_ID;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> SELECT * FROM INVOICE_PRODUCT1;                                                                                                         +---------+--------+------+----------+
+| NAME    | INV_ID | PID  | QUANTITY |
++---------+--------+------+----------+
+| FINCH   |      4 |   21 |        2 |
+| ANDREW  |      7 |   15 |       43 |
+| FINCH   |      5 |   15 |       10 |
+| FINCH   |      2 |   25 |        6 |
+| FINCH   |      4 |   25 |       15 |
+| ANDREW  |      7 |   21 |       19 |
+| ANDREW  |      7 |   25 |       30 |
+| ANDREW  |   NULL | NULL |     NULL |
+| ARNOLD  |   NULL | NULL |     NULL |
+| ARUN    |   NULL | NULL |     NULL |
+| ANN     |   NULL | NULL |     NULL |
+| SEN     |   NULL | NULL |     NULL |
+| MARKRAM |   NULL | NULL |     NULL |
++---------+--------+------+----------+
+13 rows in set (0.00 sec)
+
