@@ -1,0 +1,83 @@
+Experiment No: 9
+
+
+1)      
+List
+the product name and quantity of invoice items.
+
+mysql> SELECT PRODUCT.PNAME,INVOICE_ITEM.QUANTITY FROM PRODUCT INNER JOIN INVOICE_ITEM ON PRODUCT.PID = INVOICE_ITEM.PID;
++-------+----------+
+| PNAME | QUANTITY |
++-------+----------+
+| BAG   |        2 |
+| PHONE |       43 |
+| PHONE |       10 |
+| AC    |        6 |
+| AC    |       15 |
+| BAG   |       19 |
+| AC    |       30 |
++-------+----------+
+7 rows in set (0.00 sec)
+
+
+
+
+2)      
+Display
+invoice details of the transaction dated ’02-08-2021’.
+
+mysql> SELECT CUSTOMER.NAME,PRODUCT.PNAME,INVOICE_ITEM.QUANTITY FROM CUSTOMER INNER JOIN INVOICE_MASTER ON CUSTOMER.ID=INVOICE_MASTER.CUST_ID INNER JOIN INVOICE_ITEM ON INVOICE_ITEM.INV_ID=INVOICE_MASTER.INV_ID INNER JOIN PRODUCT ON PRODUCT.PID=INVOICE_ITEM.PID WHERE INV_DATE='2021-02-08';
++-------+-------+----------+
+| NAME  | PNAME | QUANTITY |
++-------+-------+----------+
+| FINCH | BAG   |        2 |
+| FINCH | AC    |       15 |
++-------+-------+----------+
+2 rows in set (0.00 sec)
+
+
+
+
+3)      
+Display
+the customer name, product name, invoice date of purchased item ‘BAG’.
+
+mysql> SELECT CUSTOMER.NAME,PRODUCT.PNAME,INVOICE_MASTER.INV_DATE FROM CUSTOMER INNER JOIN INVOICE_MASTER ON CUSTOMER.ID=INVOICE_MASTER.CUST_ID INNER JOIN INVOICE_ITEM ON INVOICE_ITEM.INV_ID=INVOICE_MASTER.INV_ID INNER JOIN PRODUCT ON INVOICE_ITEM.PID=PRODUCT.PID WHERE PNAME='BAG';
++--------+-------+------------+
+| NAME   | PNAME | INV_DATE   |
++--------+-------+------------+
+| FINCH  | BAG   | 2021-02-08 |
+| ANDREW | BAG   | 2022-06-20 |
++--------+-------+------------+
+2 rows in set (0.00 sec)
+
+
+
+
+
+4)
+Display
+all customer details and invoice details must include customer has not
+purchased items.
+
+
+mysql> SELECT CUSTOMER.NAME,PRODUCT.PNAME,INVOICE_ITEM.QUANTITY,INVOICE_MASTER.INV_ID,INVOICE_MASTER.INV_DATE FROM CUSTOMER LEFT JOIN INVOICE_MASTER ON CUSTOMER.ID=INVOICE_MASTER.CUST_ID LEFT JOIN INVOICE_ITEM ON INVOICE_ITEM.INV_ID=INVOICE_MASTER.INV_ID LEFT JOIN PRODUCT ON INVOICE_ITEM.PID=PRODUCT.PID;
++---------+-------+----------+--------+------------+
+| NAME    | PNAME | QUANTITY | INV_ID | INV_DATE   |
++---------+-------+----------+--------+------------+
+| FINCH   | BAG   |        2 |      4 | 2021-02-08 |
+| ANDREW  | PHONE |       43 |      7 | 2022-06-20 |
+| FINCH   | PHONE |       10 |      5 | 2022-03-28 |
+| FINCH   | AC    |        6 |      2 | 2022-06-15 |
+| FINCH   | AC    |       15 |      4 | 2021-02-08 |
+| ANDREW  | BAG   |       19 |      7 | 2022-06-20 |
+| ANDREW  | AC    |       30 |      7 | 2022-06-20 |
+| ANDREW  | NULL  |     NULL |      1 | 2021-01-17 |
+| ARNOLD  | NULL  |     NULL |   NULL | NULL       |
+| ARUN    | NULL  |     NULL |   NULL | NULL       |
+| ANN     | NULL  |     NULL |   NULL | NULL       |
+| SEN     | NULL  |     NULL |   NULL | NULL       |
+| MARKRAM | NULL  |     NULL |   NULL | NULL       |
++---------+-------+----------+--------+------------+
+13 rows in set (0.00 sec)
+
