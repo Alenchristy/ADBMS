@@ -1,0 +1,108 @@
+Experiment No: 11
+
+
+Optimising database (Using Set, arithmetic, logical and special operators)
+
+
+1.      Display
+customer_id,city who either lives in kozhikode or tvm(using set operation)
+
+
+mysql> SELECT ID,CITY FROM CUSTOMER WHERE CITY='TVM' OR CITY='KOZHIKODE';
+
+
++-----+-----------+
+| ID  | CITY      |
++-----+-----------+
+| 101 | KOZHIKODE |
+| 103 | TVM       |
+| 107 | TVM       |
+| 108 | TVM       |
+| 109 | TVM       |
++-----+-----------+
+5 rows in set (0.00 sec)
+
+
+
+
+2.      Display
+product details with an updated price amount(new price= old price+5rs)
+
+
+mysql> SELECT PID,PNAME,PRICE,PRICE+5 AS "NEW_PRICE" FROM PRODUCT;
++-----+-------+-------+-----------+
+| PID | PNAME | PRICE | NEW_PRICE |
++-----+-------+-------+-----------+
+|  10 | PEN   |    56 |        61 |
+|  13 | SOAP  |    35 |        40 |
+|  15 | PHONE | 18359 |     18364 |
+|  18 | BOOK  |   102 |       107 |
+|  21 | BAG   |  2039 |      2044 |
+|  25 | AC    | 24479 |     24484 |
++-----+-------+-------+-----------+
+6 rows in set (0.00 sec)
+
+
+
+
+3.      Display
+customer details who doesn’t have phone number and lives in ‘Calicut’ city (use
+logical operators)
+
+
+mysql> SELECT * FROM CUSTOMER;
++-----+---------+----------------+-----------+-----------+
+| ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
++-----+---------+----------------+-----------+-----------+
+| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
+| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
+| 103 | ARUN    | RIVER VILLA(H) | TVM       |  15235422 |
+| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
+| 107 | ANN     | FOREST VILLA   | TVM       |      NULL |
+| 108 | SEN     | SILVER VILLA   | TVM       | 333544353 |
+| 109 | MARKRAM | SEA VILLA      | TVM       | 567544353 |
++-----+---------+----------------+-----------+-----------+
+7 rows in set (0.00 sec)
+
+
+mysql> SELECT * FROM CUSTOMER WHERE CITY='TVM' AND PH_NO IS NULL;
++-----+------+--------------+------+-------+
+| ID  | NAME | ADDRESS      | CITY | PH_NO |
++-----+------+--------------+------+-------+
+| 107 | ANN  | FOREST VILLA | TVM  |  NULL |
++-----+------+--------------+------+-------+
+1 row in set (0.00 sec)
+
+
+
+
+4.    List
+the product names if it finds any records in the invoice items table has
+quantity =3 (use special operators)
+
+
+mysql> SELECT * FROM INVOICE_ITEM;
++--------+------+----------+
+| INV_ID | PID  | QUANTITY |
++--------+------+----------+
+|      4 |   21 |        2 |
+|      7 |   15 |       43 |
+|      5 |   15 |       10 |
+|      2 |   25 |        6 |
+|      4 |   25 |       15 |
+|      7 |   21 |       19 |
+|      7 |   25 |       30 |
++--------+------+----------+
+7 rows in set (0.00 sec)
+
+
+
+mysql> SELECT PNAME FROM PRODUCT WHERE PID IN(SELECT PID FROM INVOICE_ITEM WHERE QUANTITY=15);
++-------+
+| PNAME |
++-------+
+| AC    |
++-------+
+1 row in set (0.02 sec)
+
+
