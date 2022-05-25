@@ -8,7 +8,7 @@ Optimising database (Using Set, arithmetic, logical and special operators)
 customer_id,city who either lives in kozhikode or tvm(using set operation)
 
 
-mysql> SELECT ID,CITY FROM CUSTOMER WHERE CITY='TVM' OR CITY='KOZHIKODE';
+mysql> SELECT ID,CITY FROM CUSTOMER WHERE CITY='TVM' OR CITY='KOZHIKODE';   //WRONG USE SET OPERATION
 
 
 +-----+-----------+
@@ -106,3 +106,4 @@ mysql> SELECT PNAME FROM PRODUCT WHERE PID IN(SELECT PID FROM INVOICE_ITEM WHERE
 1 row in set (0.02 sec)
 
 
+//CORRECTION
