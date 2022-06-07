@@ -1,0 +1,140 @@
+Experiment-14
+
+PL/SQL PROGRAMS- STORED PROCEDURES
+
+1. create a procedure to display all tables in the invoice database
+
+
+mysql> DELIMITER $$
+mysql> CREATE PROCEDURE PK()
+    -> BEGIN
+    -> SELECT * FROM CUSTOMER;
+    -> SELECT * FROM PRODUCT;
+    -> SELECT * FROM INVOICE_MASTER;
+    -> SELECT * FROM INVOICE_ITEM;
+    -> END $$
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> CALL PK() $$
++-----+---------+----------------+-----------+-----------+
+| ID  | NAME    | ADDRESS        | CITY      | PH_NO     |
++-----+---------+----------------+-----------+-----------+
+| 101 | ANDREW  | GREEN VILLA(H) | KOZHIKODE |   4244343 |
+| 102 | ARNOLD  | MOUNT VILLA(H) | EKM       |  42342443 |
+| 103 | ARUN    | RIVER VILLA(H) | TVM       |  15235422 |
+| 104 | FINCH   | DREAM VILLA(H) | GOA       |  42232567 |
+| 107 | ANN     | FOREST VILLA   | TVM       |      NULL |
+| 108 | SEN     | SILVER VILLA   | TVM       | 333544353 |
+| 109 | MARKRAM | SEA VILLA      | TVM       | 567544353 |
++-----+---------+----------------+-----------+-----------+
+7 rows in set (0.00 sec)
+
++-----+-------+-------+
+| PID | PNAME | PRICE |
++-----+-------+-------+
+|  10 | PEN   |    56 |
+|  13 | SOAP  |    35 |
+|  15 | PHONE | 18359 |
+|  18 | BOOK  |   102 |
+|  21 | BAG   |  2039 |
+|  25 | AC    | 24479 |
++-----+-------+-------+
+6 rows in set (0.00 sec)
+
++--------+---------+------------+
+| INV_ID | CUST_ID | INV_DATE   |
++--------+---------+------------+
+|      1 |     101 | 2021-01-17 |
+|      2 |     104 | 2022-06-15 |
+|      4 |     104 | 2021-02-08 |
+|      5 |     104 | 2022-03-28 |
+|      7 |     101 | 2022-06-20 |
++--------+---------+------------+
+5 rows in set (0.00 sec)
+
++--------+------+----------+
+| INV_ID | PID  | QUANTITY |
++--------+------+----------+
+|      4 |   21 |        2 |
+|      7 |   15 |       43 |
+|      5 |   15 |       10 |
+|      2 |   25 |        6 |
+|      4 |   25 |       15 |
+|      7 |   21 |       19 |
+|      7 |   25 |       30 |
++--------+------+----------+
+7 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+
+
+
+2.      
+Create
+a procedure to find greatest of 3 numbers.
+
+
+
+mysql> DELIMITER $$
+mysql> CREATE PROCEDURE LARGENUM(X INT,Y INT,Z INT)
+    -> BEGIN
+    -> DECLARE A,B,C INT;
+    -> SET A=X;
+    -> SET B=Y;
+    -> SET C=Z;
+    -> IF A>B AND A>C THEN
+    -> SELECT A AS 'GREATEST NUMBER';
+    -> ELSE IF B>A AND B>C THEN
+    -> SELECT B AS 'GREATEST NUMBER';
+    -> ELSE
+    -> SELECT C AS 'GREATEST NUMBER';
+    -> END IF;
+    -> END IF;
+    -> END $$
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> CALL LARGENUM(13,37,67)$$
++-----------------+
+| GREATEST NUMBER |
++-----------------+
+|              67 |
++-----------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+
+
+Query OK, 0 rows affected (0.00 sec)
+
+
+
+
+
+3.      
+Create
+a procedure to display invoice details of a particular customer.
+
+mysql> DELIMITER $$
+mysql> DELIMITER $$
+mysql> CREATE PROCEDURE INVDTL()
+    -> BEGIN
+    -> SELECT CUSTOMER.NAME, PRODUCT.PNAME, INVOICE_ITEM.QUANTITY FROM PRODUCT INNER JOIN INVOICE_ITEM ON PRODUCT.PID=INVOICE_ITEM.PID INNER JOIN INVOICE_MASTER ON INVOICE_ITEM.INV_ID=INVOICE_MASTER.INV_ID INNER JOIN CUSTOMER ON INVOICE_MASTER.CUST_ID=CUSTOMER.ID WHERE NAME='FINCH';
+    -> END $$
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> CALL INVDTL $$
++-------+-------+----------+
+| NAME  | PNAME | QUANTITY |
++-------+-------+----------+
+| FINCH | BAG   |        2 |
+| FINCH | PHONE |       10 |
+| FINCH | AC    |        6 |
+| FINCH | AC    |       15 |
++-------+-------+----------+
+4 rows in set (0.02 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+
