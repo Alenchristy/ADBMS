@@ -1,0 +1,39 @@
+Experiment No: 15
+
+PL/SQL PROGRAMS – FUNCTIONS
+
+
+1.Create
+a function to calculate price_range(low, medium, high) of each product. If
+price<=5 indicate as low, upto 50 indicate as medium, and above as high.
+
+mysql> CREATE FUNCTION PRICERANGE(PRICE INT)
+    -> RETURNS VARCHAR(10)
+    -> DETERMINISTIC
+    -> BEGIN
+    -> DECLARE STATE VARCHAR(10);
+    -> IF PRICE<=5 THEN
+    -> SET STATE= 'LOW';
+    -> ELSEIF PRICE<=50 THEN
+    -> SET STATE= 'MEDIUM';
+    -> ELSEIF PRICE>50 THEN
+    -> SET STATE= 'HIGH';
+    -> END IF;
+    -> RETURN(STATE);
+    -> END $$
+Query OK, 0 rows affected (0.06 sec)
+
+
+mysql> SELECT PNAME,PRICE,PRICERANGE(PRICE) FROM PRODUCT $$
++-------+-------+-------------------+
+| PNAME | PRICE | PRICERANGE(PRICE) |
++-------+-------+-------------------+
+| PEN   |    56 | HIGH              |
+| SOAP  |    35 | MEDIUM            |
+| PHONE | 18359 | HIGH              |
+| BOOK  |   102 | HIGH              |
+| BAG   |  2039 | HIGH              |
+| AC    | 24479 | HIGH              |
++-------+-------+-------------------+
+6 rows in set (0.01 sec)
+
