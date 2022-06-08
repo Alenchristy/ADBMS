@@ -1,0 +1,79 @@
+Experiment No: 16
+
+PL/SQL PROGRAMS – TRIGGERS
+
+
+1.      
+Create
+a trigger to handle updates to the customer table.
+mysql> CREATE TABLE CUSTOMER1(ID INT NOT NULL,NAME VARCHAR(20),ADDRESS VARCHAR(25),CITY VARCHAR(15),PH_NO INT);
+Query OK, 0 rows affected (0.21 sec)
+
+
+
+mysql> DELIMITER //
+
+mysql> CREATE TRIGGER BACKUP BEFORE UPDATE ON CUSTOMER
+    -> FOR EACH ROW
+    -> BEGIN
+    -> INSERT INTO CUSTOMER1
+    -> VALUES (OLD.ID, OLD.NAME, OLD.ADDRESS, OLD.CITY, OLD.PH_NO);
+    -> END
+    -> //
+Query OK, 0 rows affected (0.05 sec)
+
+
+mysql> UPDATE CUSTOMER SET CITY='EKM' WHERE ID=108;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE CUSTOMER SET NAME='MANU' WHERE ID=103;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM CUSTOMER1;
++-----+------+----------------+------+-----------+
+| ID  | NAME | ADDRESS        | CITY | PH_NO     |
++-----+------+----------------+------+-----------+
+| 108 | SEN  | SILVER VILLA   | TVM  | 333544353 |
+| 103 | ARUN | RIVER VILLA(H) | TVM  |  15235422 |
++-----+------+----------------+------+-----------+
+2 rows in set (0.00 sec)
+
+
+
+
+
+2.      
+Create
+a trigger to handle inserts to the product relation ( if price < 5 the set
+price to 10).
+
+
+mysql> DELIMITER //
+mysql> CREATE TRIGGER PRODUCT_TR BEFORE INSERT ON PRODUCT
+    -> FOR EACH ROW
+    -> BEGIN
+    -> IF NEW.PRICE <5 THEN
+    -> SET NEW.PRICE=10;
+    -> END IF;
+    -> END //
+Query OK, 0 rows affected (0.05 sec)
+
+
+mysql> INSERT INTO PRODUCT VALUES(6, 'PENCIL',3); //
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT * FROM PRODUCT; //
++-----+--------+-------+
+| PID | PNAME  | PRICE |
++-----+--------+-------+
+|   6 | PENCIL |    10 |
+|  10 | PEN    |    56 |
+|  13 | SOAP   |    35 |
+|  15 | PHONE  | 18359 |
+|  18 | BOOK   |   102 |
+|  21 | BAG    |  2039 |
+|  25 | AC     | 24479 |
++-----+--------+-------+
+7 rows in set (0.00 sec)
