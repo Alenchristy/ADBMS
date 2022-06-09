@@ -37,3 +37,4 @@ mysql> SELECT PNAME,PRICE,PRICERANGE(PRICE) FROM PRODUCT $$
 +-------+-------+-------------------+
 6 rows in set (0.01 sec)
 
+//VERIFIED
