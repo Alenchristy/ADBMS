@@ -77,3 +77,5 @@ mysql> SELECT * FROM PRODUCT; //
 |  25 | AC     | 24479 |
 +-----+--------+-------+
 7 rows in set (0.00 sec)
+
+//VERIFIED
