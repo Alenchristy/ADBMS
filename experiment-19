@@ -1,0 +1,50 @@
+Experiment No: 19- NoSQL- Retrieving data
+
+NoSQL
+– RETRIEVING DATA
+
+1.      Write
+a MongoDB query to display the customer documents having city ‘ekm’,’tvm’.
+
+
+> db.customer.find({$or:[{"place":"tvm"},{"place":"ekm"}]}).pretty()
+{
+	"_id" : ObjectId("62a6cbd61b34bc6b359d8fcb"),
+	"name" : "markram",
+	"place" : "tvm",
+	"age" : "33",
+	"phno" : "123454235"
+}
+{
+	"_id" : ObjectId("62a6cbee1b34bc6b359d8fcc"),
+	"name" : "ann",
+	"place" : "ekm",
+	"age" : "27",
+	"phno" : "43542454235"
+}
+
+
+
+
+
+
+2.     
+Write a MongoDB query to display all
+customer documents who have age >30.
+
+> db.customer.find({"age":{$gt:"30"}}).pretty()
+{
+	"_id" : ObjectId("62a6cbd61b34bc6b359d8fcb"),
+	"name" : "markram",
+	"place" : "tvm",
+	"age" : "33",
+	"phno" : "123454235"
+}
+{
+	"_id" : ObjectId("62a6cc061b34bc6b359d8fcd"),
+	"name" : "manu",
+	"place" : "usa",
+	"age" : "35",
+	"phno" : "41241254235"
+}
+
