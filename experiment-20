@@ -38,4 +38,4 @@ a MongoDB query to find minimum and maximum age in each city.
 { "_id" : "ekm", "max_age" : "27", "min_age" : 25 }
 { "_id" : "tvm", "max_age" : "33", "min_age" : 29 }
 
-
+//VERIFIED
